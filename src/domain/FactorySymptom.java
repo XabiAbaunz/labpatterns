@@ -12,6 +12,7 @@ public class FactorySymptom {
 	private ArrayList<Symptom> symptoms=new ArrayList<>();
 	
 	public Symptom createSymptom(String symptomName) {
+		Symptom s = null;
 	    List<String> impact5 = Arrays.asList("fiebre", "tos seca", "astenia","expectoracion");
 	    List<Double> index5 = Arrays.asList(87.9, 67.7, 38.1, 33.4);
 	    List<String> impact3 = Arrays.asList("disnea", "dolor de garganta", "cefalea","mialgia","escalofrios");
@@ -31,40 +32,17 @@ public class FactorySymptom {
 	        else if (impact1.contains(symptomName)) {impact=1; index= index1.get(impact1.indexOf(symptomName));}
 	 
 	    if (impact!=0)  {
-	    	Symptom s = getSymptomByName(symptomName);
 	    	if (digestiveSymptom.contains(symptomName)) {
-	    		if(s == null) {
-	    			s = new DigestiveSymptom(symptomName,(int)index, impact);
-	    			symptoms.add(s);
-	    		}
-    			return s;
+	    		s = DigestiveSymptom.getInstance(symptomName,(int)index, impact);
 	    	}
 	    	if (neuroMuscularSymptom.contains(symptomName)) {
-	    		if(s == null) {
-	    			s = new NeuroMuscularSymptom(symptomName,(int)index, impact);
-	    			symptoms.add(s);
-	    		}
-	    		return s;
+	    		s = NeuroMuscularSymptom.getInstance(symptomName,(int)index, impact);
 	    	}
 	    	if (respiratorySymptom.contains(symptomName)) {
-	    		if(s == null) {
-	    			s = new RespiratorySymptom(symptomName,(int)index, impact);
-	    			symptoms.add(s);
-	    		}
-	    		return s;
+	    		s = RespiratorySymptom.getInstance(symptomName,(int)index, impact);
 	    	}
 	    }
-	    return null;		
-	}
-	
-	private Symptom getSymptomByName(String symptomName) {
-		Iterator<Symptom> i= symptoms.iterator();
-		Symptom s=null;
-		while (i.hasNext()) {
-			s=i.next();
-			if (s!=null && s.getName().compareTo(symptomName)==0) return s;
-		}
-		return null;	
+	    return s;		
 	}
 	
 }
