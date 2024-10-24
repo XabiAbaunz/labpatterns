@@ -1,8 +1,11 @@
 package domain;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 public class DigestiveSymptom extends Symptom{
 
-	private static DigestiveSymptom ds = null;
+	private static ArrayList<DigestiveSymptom> ds = new ArrayList<>();
 
 	public DigestiveSymptom(String name, int covidImpact, int severityIndex) {
 		super(name, covidImpact, severityIndex);
@@ -10,10 +13,19 @@ public class DigestiveSymptom extends Symptom{
 	}
 	
 	public static DigestiveSymptom getInstance(String name, int covidImpact, int severityIndex) {
-		if(ds == null) {
-			ds = new DigestiveSymptom(name, covidImpact, severityIndex);
+		DigestiveSymptom s = null;
+		Iterator iterator = ds.iterator();
+		boolean aurkitua = false;
+		while(iterator.hasNext() && !aurkitua) {
+			s = (DigestiveSymptom) iterator.next();
+			if(s.getName().equals(name)) {
+				aurkitua = true;
+			}
 		}
-		return ds;
+		if(!aurkitua) {
+			s=new DigestiveSymptom(name, covidImpact, severityIndex);
+			ds.add(s);
+		}
+		return s;
 	}
-
 }

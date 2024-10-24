@@ -15,7 +15,7 @@ public class ShowPacientTableGUI extends JFrame{
 	Covid19Pacient pacient;
 	
   
-  public ShowPacientTableGUI(Covid19Pacient pacient ) {
+  public ShowPacientTableGUI(Covid19Pacient pacient) {
 	  	this.setTitle("Covid Symptoms "+pacient.getName());
 	  	
 	  	this.pacient=pacient;
@@ -26,11 +26,13 @@ public class ShowPacientTableGUI extends JFrame{
 		table = new JTable(tm);
 	    table.setRowHeight(36);
 	    JScrollPane pane = new JScrollPane(table);
-	    pane.setPreferredSize(
-	      new java.awt.Dimension(300, 200));
+	    pane.setPreferredSize(new java.awt.Dimension(300, 200));
 	    this.getContentPane().add(pane);
 	    
-	  
+	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    this.pack(); 
+	    this.setLocationRelativeTo(null); 
+	    this.setVisible(true);
   }
 
   private static void setFonts() {

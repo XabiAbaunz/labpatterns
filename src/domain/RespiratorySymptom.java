@@ -1,8 +1,11 @@
 package domain;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 public class RespiratorySymptom extends Symptom{
 
-	private static RespiratorySymptom rs = null;
+	private static ArrayList<RespiratorySymptom> rs = new ArrayList<>();
 
 	public RespiratorySymptom(String name, int covidImpact, int severityIndex) {
 		super(name, covidImpact, severityIndex);
@@ -10,11 +13,19 @@ public class RespiratorySymptom extends Symptom{
 	}
 	
 	public static RespiratorySymptom getInstance(String name, int covidImpact, int severityIndex) {
-		if(rs == null) {
-			rs = new RespiratorySymptom(name, covidImpact, severityIndex);
+		RespiratorySymptom s = null;
+		Iterator iterator = rs.iterator();
+		boolean aurkitua = false;
+		while(iterator.hasNext() && !aurkitua) {
+			s = (RespiratorySymptom) iterator.next();
+			if(s.getName().equals(name)) {
+				aurkitua = true;
+			}
 		}
-		return rs;
+		if(!aurkitua) {
+			s=new RespiratorySymptom(name, covidImpact, severityIndex);
+			rs.add(s);
+		}
+		return s;
 	}
-
-
 }

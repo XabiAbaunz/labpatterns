@@ -43,6 +43,5 @@ public class FactorySymptom {
 	    	}
 	    }
 	    return s;		
-	}
-	
+	}	
 }
