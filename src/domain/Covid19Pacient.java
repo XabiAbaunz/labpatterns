@@ -77,7 +77,6 @@ public class Covid19Pacient extends Observable{
 		}
 		setChanged(); 
 		notifyObservers();
-		System.out.println(s);
 		return s;
 	}
 
